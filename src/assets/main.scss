@@ -8,3 +8,24 @@ h1 {
   color: $color-5;
   font-family: $font-major;
 }
+
+button {
+  border: none;
+  font-family: $font-major;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+li {
+  color: $color-5;
+  font-family: $font-minor;
+}
+
+.parent-container {
+  width: 100%;
+}
+
+.child-container {
+  width: 100%;
+  max-width: 1536px;
+}
