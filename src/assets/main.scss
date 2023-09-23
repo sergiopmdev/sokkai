@@ -9,6 +9,11 @@ h1 {
   font-family: $font-major;
 }
 
+a {
+  color: $color-5;
+  text-decoration: none;
+}
+
 button {
   border: none;
   font-family: $font-major;
@@ -17,7 +22,6 @@ button {
 }
 
 li {
-  color: $color-5;
   font-family: $font-minor;
 }
 

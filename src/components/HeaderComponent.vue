@@ -1,18 +1,47 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface Link {
+  name: string
+  link: string
+}
+
+const links: Link[] = [
+  {
+    name: 'Link 1',
+    link: '/link-1'
+  },
+  {
+    name: 'Link 2',
+    link: '/link-2'
+  },
+  {
+    name: 'Link 3',
+    link: '/link-3'
+  },
+  {
+    name: 'Link 4',
+    link: '/link-4'
+  }
+]
+</script>
 
 <template>
   <header class="parent-container">
     <div class="child-container header-content">
       <h1 class="header-content--logo">Sokkai</h1>
       <ul class="header-content__links">
-        <li class="header-content__links--link">Link 1</li>
-        <li class="header-content__links--link">Link 2</li>
-        <li class="header-content__links--link">Link 3</li>
-        <li class="header-content__links--link">Link 4</li>
+        <li v-for="(link, key) in links" v-bind:key="key">
+          <router-link class="header-content__links--link" :to="link.link">{{
+            link.name
+          }}</router-link>
+        </li>
       </ul>
       <div class="header-content__auth">
-        <button class="header-content__auth--sign-in"><a>Sign in</a></button>
-        <button class="header-content__auth--sign-up"><a>Sign up</a></button>
+        <router-link to="/sign-in">
+          <button class="header-content__auth--sign-in">Sign in</button>
+        </router-link>
+        <router-link to="/sign-up">
+          <button class="header-content__auth--sign-up">Sign up</button>
+        </router-link>
       </div>
     </div>
   </header>
@@ -67,6 +96,7 @@ header {
       color: $color-5;
       background-color: transparent;
       border-bottom: 1px solid transparent;
+      padding: 0.8rem 0;
 
       &:hover {
         border-bottom-color: $color-5;
