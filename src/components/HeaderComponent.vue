@@ -57,6 +57,34 @@ const responsiveBlockIsVisible = ref(false)
           class="header-content__responsive-block--close-icon"
           v-on:click="responsiveBlockIsVisible = false"
         />
+        <ul class="header-content__responsive-block__links">
+          <li v-for="(link, key) in links" v-bind:key="key">
+            <router-link
+              class="header-content__responsive-block__links--link"
+              :to="link.link"
+              v-on:click="responsiveBlockIsVisible = false"
+              >{{ link.name }}</router-link
+            >
+          </li>
+        </ul>
+        <div class="header-content__responsive-block__auth">
+          <router-link to="/sign-in">
+            <button
+              class="header-content__responsive-block__auth--sign-in"
+              v-on:click="responsiveBlockIsVisible = false"
+            >
+              Sign in
+            </button>
+          </router-link>
+          <router-link to="/sign-up">
+            <button
+              class="header-content__responsive-block__auth--sign-up"
+              v-on:click="responsiveBlockIsVisible = false"
+            >
+              Sign up
+            </button>
+          </router-link>
+        </div>
       </div>
     </div>
   </header>
@@ -161,7 +189,10 @@ header {
     width: 100%;
     height: 100%;
     display: flex;
-    background-color: $color-2;
+    align-items: center;
+    justify-content: center;
+    background-color: lighten($color-1, 10%);
+    flex-direction: column;
     position: absolute;
     left: 0;
     top: 0;
@@ -178,6 +209,63 @@ header {
       cursor: pointer;
       right: 3%;
       top: 3%;
+    }
+
+    &__links {
+      width: 15rem;
+      display: flex;
+      flex-direction: column;
+      list-style-type: none;
+      text-align: center;
+      padding: 0;
+      gap: 2rem;
+
+      &--link {
+        color: $color-5;
+        font-size: 3rem;
+
+        &:hover {
+          color: darken($color-5, 30%);
+          transition: 0.2s color;
+        }
+      }
+    }
+
+    &__auth {
+      width: 15rem;
+      display: flex;
+      flex-direction: column;
+      margin-top: 3rem;
+      gap: 2rem;
+
+      &--sign-in {
+        color: $color-5;
+        border: 1px solid $color-5;
+        background-color: transparent;
+        border-radius: 0.3rem;
+        padding: 0.8rem 1rem;
+        font-size: 3rem;
+        width: 100%;
+
+        &:hover {
+          background-color: transparentize($color-5, 0.9);
+          transition: 0.2s background-color;
+        }
+      }
+
+      &--sign-up {
+        color: $color-1;
+        border-radius: 0.3rem;
+        background-color: $color-5;
+        padding: 0.8rem 1rem;
+        font-size: 3rem;
+        width: 100%;
+
+        &:hover {
+          background-color: darken($color-5, 30%);
+          transition: 0.2s background-color;
+        }
+      }
     }
   }
 }
