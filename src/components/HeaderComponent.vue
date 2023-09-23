@@ -199,6 +199,11 @@ header {
     @include lg {
       display: block;
     }
+
+    &:hover {
+      color: darken($color-5, 30%);
+      transition: 0.2s color;
+    }
   }
 
   &__responsive-block {
@@ -225,6 +230,11 @@ header {
       cursor: pointer;
       right: 3%;
       top: 3%;
+
+      &:hover {
+        color: darken($color-5, 30%);
+        transition: 0.2s color;
+      }
     }
 
     &__links {
