@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import MenuIcon from './icons/MenuIcon.vue'
 import CrossIcon from './icons/CrossIcon.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 interface Link {
   name: string
@@ -27,7 +28,18 @@ const links: Link[] = [
   }
 ]
 
+const route = useRoute()
+const path = ref()
+
 const responsiveBlockIsVisible = ref(false)
+
+watch(
+  route,
+  (newRoute) => {
+    path.value = newRoute.path
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
@@ -38,9 +50,12 @@ const responsiveBlockIsVisible = ref(false)
       </router-link>
       <ul class="header-content__links">
         <li v-for="(link, key) in links" v-bind:key="key">
-          <router-link class="header-content__links--link" :to="link.link">{{
-            link.name
-          }}</router-link>
+          <router-link
+            class="header-content__links--link"
+            :class="{ activeLink: path === link.link }"
+            :to="link.link"
+            >{{ link.name }}</router-link
+          >
         </li>
       </ul>
       <div class="header-content__auth">
@@ -61,6 +76,7 @@ const responsiveBlockIsVisible = ref(false)
           <li v-for="(link, key) in links" v-bind:key="key">
             <router-link
               class="header-content__responsive-block__links--link"
+              :class="{ activeLink: path === link.link }"
               :to="link.link"
               v-on:click="responsiveBlockIsVisible = false"
               >{{ link.name }}</router-link
@@ -267,6 +283,10 @@ header {
         }
       }
     }
+  }
+
+  .activeLink {
+    color: $color-3;
   }
 }
 </style>
