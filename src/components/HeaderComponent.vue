@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import MenuIcon from './icons/MenuIcon.vue'
+import CrossIcon from './icons/CrossIcon.vue'
+import { ref } from 'vue'
 
 interface Link {
   name: string
@@ -24,12 +26,16 @@ const links: Link[] = [
     link: '/link-4'
   }
 ]
+
+const responsiveBlockIsVisible = ref(false)
 </script>
 
 <template>
   <header class="parent-container">
     <div class="child-container header-content">
-      <h1 class="header-content--logo">Sokkai</h1>
+      <router-link to="/">
+        <h1 class="header-content--logo">Sokkai</h1>
+      </router-link>
       <ul class="header-content__links">
         <li v-for="(link, key) in links" v-bind:key="key">
           <router-link class="header-content__links--link" :to="link.link">{{
@@ -45,7 +51,13 @@ const links: Link[] = [
           <button class="header-content__auth--sign-up">Sign up</button>
         </router-link>
       </div>
-      <MenuIcon class="header-content--menu-icon" />
+      <MenuIcon class="header-content--menu-icon" v-on:click="responsiveBlockIsVisible = true" />
+      <div class="header-content__responsive-block" v-if="responsiveBlockIsVisible">
+        <CrossIcon
+          class="header-content__responsive-block--close-icon"
+          v-on:click="responsiveBlockIsVisible = false"
+        />
+      </div>
     </div>
   </header>
 </template>
@@ -134,12 +146,38 @@ header {
   }
 
   &--menu-icon {
+    width: 2.5rem;
+    height: 2.5rem;
     display: none;
     color: $color-5;
     cursor: pointer;
 
     @include lg {
       display: block;
+    }
+  }
+
+  &__responsive-block {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: $color-2;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    @include not-lg {
+      display: none;
+    }
+
+    &--close-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      position: absolute;
+      color: $color-5;
+      cursor: pointer;
+      right: 3%;
+      top: 3%;
     }
   }
 }

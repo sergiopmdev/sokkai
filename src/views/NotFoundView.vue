@@ -1,6 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeaderComponent from '@/components/HeaderComponent.vue'
+</script>
 
 <template>
+  <HeaderComponent />
   <h1>Page not found</h1>
 </template>
 

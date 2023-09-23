@@ -5,3 +5,9 @@
     @content;
   }
 }
+
+@mixin not-lg {
+  @media only screen and (min-width: 1024px) {
+    @content;
+  }
+}
