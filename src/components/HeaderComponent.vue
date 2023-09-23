@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import MenuIcon from './icons/MenuIcon.vue'
+
 interface Link {
   name: string
   link: string
@@ -43,12 +45,14 @@ const links: Link[] = [
           <button class="header-content__auth--sign-up">Sign up</button>
         </router-link>
       </div>
+      <MenuIcon class="header-content--menu-icon" />
     </div>
   </header>
 </template>
 
 <style lang="scss" scoped>
 @import '../assets/base';
+@import '../assets/mixins';
 
 header {
   height: 6rem;
@@ -79,6 +83,10 @@ header {
     list-style-type: none;
     gap: 4rem;
 
+    @include lg {
+      display: none;
+    }
+
     &--link {
       color: $color-5;
 
@@ -92,6 +100,10 @@ header {
   &__auth {
     display: flex;
     gap: 2rem;
+
+    @include lg {
+      display: none;
+    }
 
     button {
       font-weight: bold;
@@ -118,6 +130,16 @@ header {
         background-color: darken($color-5, 30%);
         transition: 0.2s background-color;
       }
+    }
+  }
+
+  &--menu-icon {
+    display: none;
+    color: $color-5;
+    cursor: pointer;
+
+    @include lg {
+      display: block;
     }
   }
 }
