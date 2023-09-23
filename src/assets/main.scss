@@ -5,19 +5,18 @@ body {
 }
 
 h1 {
-  color: $color-5;
   font-family: $font-major;
 }
 
 a {
-  color: $color-5;
   text-decoration: none;
+  cursor: pointer;
 }
 
 button {
   border: none;
+  background-color: none;
   font-family: $font-major;
-  font-weight: bold;
   cursor: pointer;
 }
 

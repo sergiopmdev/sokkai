@@ -64,6 +64,7 @@ header {
   margin: 0 2rem;
 
   &--logo {
+    color: $color-5;
     font-size: 1.8rem;
     cursor: pointer;
 
@@ -79,7 +80,7 @@ header {
     gap: 4rem;
 
     &--link {
-      cursor: pointer;
+      color: $color-5;
 
       &:hover {
         color: darken($color-5, 30%);
@@ -91,6 +92,10 @@ header {
   &__auth {
     display: flex;
     gap: 2rem;
+
+    button {
+      font-weight: bold;
+    }
 
     &--sign-in {
       color: $color-5;
