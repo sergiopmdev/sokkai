@@ -3,3 +3,32 @@
 body {
   background-color: $color-1;
 }
+
+h1 {
+  font-family: $font-major;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  background-color: none;
+  font-family: $font-major;
+  cursor: pointer;
+}
+
+li {
+  font-family: $font-minor;
+}
+
+.parent-container {
+  width: 100%;
+}
+
+.child-container {
+  width: 100%;
+  max-width: 1536px;
+}
