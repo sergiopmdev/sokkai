@@ -2,10 +2,17 @@
 
 body {
   background-color: $color-1;
+  margin: 0;
 }
 
 h1 {
   font-family: $font-major;
+  margin: 0;
+}
+
+p {
+  font-family: $font-minor;
+  color: $color-5;
 }
 
 a {
@@ -15,7 +22,7 @@ a {
 
 button {
   border: none;
-  background-color: none;
+  background-color: transparent;
   font-family: $font-major;
   cursor: pointer;
 }
