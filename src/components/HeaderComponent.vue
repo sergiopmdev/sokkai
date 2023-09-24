@@ -7,24 +7,29 @@ import { useRoute } from 'vue-router'
 interface Link {
   name: string
   link: string
+  id: string
 }
 
 const links: Link[] = [
   {
     name: 'Link 1',
-    link: '/link-1'
+    link: '/link-1',
+    id: 'link-1'
   },
   {
     name: 'Link 2',
-    link: '/link-2'
+    link: '/link-2',
+    id: 'link-2'
   },
   {
     name: 'Link 3',
-    link: '/link-3'
+    link: '/link-3',
+    id: 'link-3'
   },
   {
     name: 'Link 4',
-    link: '/link-4'
+    link: '/link-4',
+    id: 'link-4'
   }
 ]
 
@@ -53,6 +58,7 @@ watch(
           <router-link
             class="header-content__links--link"
             :class="{ activeLink: path === link.link }"
+            v-bind:id="link.id + '-default'"
             :to="link.link"
             >{{ link.name }}</router-link
           >
@@ -77,6 +83,7 @@ watch(
             <router-link
               class="header-content__responsive-block__links--link"
               :class="{ activeLink: path === link.link }"
+              v-bind:id="link.id + '-responsive'"
               :to="link.link"
               v-on:click="responsiveBlockIsVisible = false"
               >{{ link.name }}</router-link
