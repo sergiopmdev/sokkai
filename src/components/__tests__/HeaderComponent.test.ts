@@ -13,12 +13,13 @@ function getHeaderWrapper(): VueWrapper {
 }
 
 describe('Header component', () => {
-  it('Default block renders', async () => {
+  it('Default block renders', () => {
     const wrapper = getHeaderWrapper()
 
     expect(wrapper).toBeTruthy()
 
     expect(wrapper.get('header')).toBeTruthy()
+    expect(wrapper.get('.parent-container')).toBeTruthy()
     expect(wrapper.get('.child-container')).toBeTruthy()
     expect(wrapper.get('.header-content')).toBeTruthy()
     expect(wrapper.get('.header-content--logo')).toBeTruthy()
@@ -28,6 +29,9 @@ describe('Header component', () => {
     expect(wrapper.get('.header-content__auth--sign-in')).toBeTruthy()
     expect(wrapper.get('.header-content__auth--sign-up')).toBeTruthy()
     expect(wrapper.get('.header-content--menu-icon')).toBeTruthy()
+
+    expect(wrapper.get('#nav-default')).toBeTruthy()
+    expect(wrapper.get('#links-default')).toBeTruthy()
   })
 
   it('Responsive block renders after click on menu icon', async () => {
@@ -43,6 +47,11 @@ describe('Header component', () => {
     expect(wrapper.get('.header-content__responsive-block__auth')).toBeTruthy()
     expect(wrapper.get('.header-content__responsive-block__auth--sign-in')).toBeTruthy()
     expect(wrapper.get('.header-content__responsive-block__auth--sign-up')).toBeTruthy()
+
+    expect(wrapper.get('.auth-button')).toBeTruthy()
+
+    expect(wrapper.get('#nav-responsive')).toBeTruthy()
+    expect(wrapper.get('#links-responsive')).toBeTruthy()
   })
 
   it('Responsive block hides after click on close icon', async () => {
@@ -69,7 +78,7 @@ describe('Header component', () => {
     expect(() => wrapper.get('.header-content__responsive-block')).toThrowError()
   })
 
-  it('Responsive block hides after click on auth buttons', async () => {
+  it('Responsive block hides after click on one of its auth buttons', async () => {
     const wrapper = getHeaderWrapper()
 
     wrapper.get('.header-content--menu-icon').trigger('click')

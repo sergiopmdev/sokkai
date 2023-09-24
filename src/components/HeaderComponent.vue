@@ -53,17 +53,19 @@ watch(
       <router-link to="/">
         <h1 class="header-content--logo">Sokkai</h1>
       </router-link>
-      <ul class="header-content__links">
-        <li v-for="(link, key) in links" v-bind:key="key">
-          <router-link
-            class="header-content__links--link"
-            :class="{ activeLink: path === link.link }"
-            v-bind:id="link.id + '-default'"
-            :to="link.link"
-            >{{ link.name }}</router-link
-          >
-        </li>
-      </ul>
+      <nav id="nav-default">
+        <ul class="header-content__links">
+          <li id="links-default" v-for="(link, key) in links" v-bind:key="key">
+            <router-link
+              class="header-content__links--link"
+              :class="{ activeLink: path === link.link }"
+              v-bind:id="link.id + '-default'"
+              :to="link.link"
+              >{{ link.name }}</router-link
+            >
+          </li>
+        </ul>
+      </nav>
       <div class="header-content__auth">
         <router-link to="/sign-in">
           <button class="header-content__auth--sign-in">Sign in</button>
@@ -78,22 +80,24 @@ watch(
           class="header-content__responsive-block--close-icon"
           v-on:click="responsiveBlockIsVisible = false"
         />
-        <ul class="header-content__responsive-block__links">
-          <li v-for="(link, key) in links" v-bind:key="key">
-            <router-link
-              class="header-content__responsive-block__links--link"
-              :class="{ activeLink: path === link.link }"
-              v-bind:id="link.id + '-responsive'"
-              :to="link.link"
-              v-on:click="responsiveBlockIsVisible = false"
-              >{{ link.name }}</router-link
-            >
-          </li>
-        </ul>
+        <nav id="nav-responsive">
+          <ul class="header-content__responsive-block__links">
+            <li id="links-responsive" v-for="(link, key) in links" v-bind:key="key">
+              <router-link
+                class="header-content__responsive-block__links--link"
+                :class="{ activeLink: path === link.link }"
+                v-bind:id="link.id + '-responsive'"
+                :to="link.link"
+                v-on:click="responsiveBlockIsVisible = false"
+                >{{ link.name }}</router-link
+              >
+            </li>
+          </ul>
+        </nav>
         <div class="header-content__responsive-block__auth">
           <router-link to="/sign-in">
             <button
-              class="header-content__responsive-block__auth--sign-in"
+              class="auth-button header-content__responsive-block__auth--sign-in"
               v-on:click="responsiveBlockIsVisible = false"
             >
               Sign in
@@ -101,7 +105,7 @@ watch(
           </router-link>
           <router-link to="/sign-up">
             <button
-              class="header-content__responsive-block__auth--sign-up"
+              class="auth-button header-content__responsive-block__auth--sign-up"
               v-on:click="responsiveBlockIsVisible = false"
             >
               Sign up
@@ -271,14 +275,17 @@ header {
       margin-top: 3rem;
       gap: 2rem;
 
-      &--sign-in {
-        color: $color-5;
-        border: 1px solid $color-5;
-        background-color: transparent;
+      .auth-button {
         border-radius: 0.3rem;
         padding: 0.8rem 1rem;
         font-size: 3rem;
         width: 100%;
+      }
+
+      &--sign-in {
+        color: $color-5;
+        border: 1px solid $color-5;
+        background-color: transparent;
 
         &:hover {
           background-color: transparentize($color-5, 0.9);
@@ -288,11 +295,7 @@ header {
 
       &--sign-up {
         color: $color-1;
-        border-radius: 0.3rem;
         background-color: $color-5;
-        padding: 0.8rem 1rem;
-        font-size: 3rem;
-        width: 100%;
 
         &:hover {
           background-color: darken($color-5, 30%);
